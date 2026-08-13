@@ -4,7 +4,6 @@
 *.lxt
 *.lxt2
 simv
-sim
 obj_dir/
 
 # Python
@@ -33,3 +32,7 @@ build/
 
 # Pytest
 .pytest_cache/
+
+# cocotb
+results.xml
+sim_build/

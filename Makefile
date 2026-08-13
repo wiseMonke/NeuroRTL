@@ -12,14 +12,18 @@ TB = tb/tb_mac.sv
 SRC = $(RTL) $(TB)
 
 # Output binary
-OUT = sim
+OUT = simv
 
 # Default target
-all: sim
+all: $(OUT)
 
 # Compile and run simulation
-sim:
+$(OUT):
 	$(SIM) -g2012 -o $(OUT) $(SRC)
+	$(VVP) $(OUT)
+
+# Phony target to explicitly run simulation
+run: $(OUT)
 	$(VVP) $(OUT)
 
 # Clean generated files
