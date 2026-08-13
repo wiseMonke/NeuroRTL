@@ -2,9 +2,13 @@
 SIM = iverilog
 VVP = vvp
 
-# Source files
-RTL = rtl/and_gate.sv
-TB  = tb/tb_and_gate.sv
+# RTL source files
+RTL = rtl/mac.sv
+
+# Testbench source files
+TB = tb/tb_mac.sv
+
+# All sources
 SRC = $(RTL) $(TB)
 
 # Output binary
