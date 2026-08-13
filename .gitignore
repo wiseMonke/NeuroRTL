@@ -1,0 +1,32 @@
+# Simulation artifacts
+*.vcd
+*.fst
+*.lxt
+*.lxt2
+simv
+sim
+obj_dir/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.env
+.venv/
+
+# Synthesis / build
+build/
+*.jou
+*.log
+*.runs/
+*.srcs/
+*.bit
+*.bin
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
