@@ -1,11 +1,49 @@
-name: RTL Simulation
+name: Verification
 
 on:
   push:
   pull_request:
 
 jobs:
-  sim:
+  model-tests:
+    name: Python model tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install Python dependencies
+        run: |
+          python3 -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run model unit tests
+        run: python3 -m pytest -v
+
+  rtl-sim:
+    name: SystemVerilog testbench
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install Icarus Verilog
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y iverilog
+
+      - name: Run RTL simulation
+        run: make sim
+
+  cocotb-sim:
+    name: cocotb verification
     runs-on: ubuntu-latest
 
     steps:
@@ -27,5 +65,6 @@ jobs:
           python3 -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run simulation
-        run: make sim
+      - name: Run cocotb tests
+        working-directory: sim
+        run: make
